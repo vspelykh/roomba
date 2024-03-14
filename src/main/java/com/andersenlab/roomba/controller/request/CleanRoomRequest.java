@@ -26,6 +26,6 @@ public class CleanRoomRequest {
     @Valid
     private List<PatchDto> patches;
 
-    @Pattern(regexp = "[NSEW]+")
+    @Pattern(regexp = "[NSEW]+", message = "Instruction contains an invalid command")
     private String instructions;
 }

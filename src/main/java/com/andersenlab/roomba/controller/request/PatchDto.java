@@ -1,10 +1,10 @@
 package com.andersenlab.roomba.controller.request;
 
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Range;
 
 @Data
 @NoArgsConstructor
@@ -12,9 +12,9 @@ import org.hibernate.validator.constraints.Range;
 @Builder(toBuilder = true)
 public class PatchDto {
 
-    @Range(min = 0)
+    @Min(value = 0, message = "X coordinate of the patch should start from 0")
     private int x;
 
-    @Range(min = 0)
+    @Min(value = 0, message = "X coordinate of the patch should start from 0")
     private int y;
 }
