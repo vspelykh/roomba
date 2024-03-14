@@ -1,9 +1,9 @@
 package com.andersenlab.roomba.controller;
 
-import com.andersenlab.roomba.controller.request.CleanRoomRequest;
-import com.andersenlab.roomba.controller.request.CleanerCoordsDto;
-import com.andersenlab.roomba.controller.request.PatchDto;
-import com.andersenlab.roomba.controller.request.RoomSizeDto;
+import com.andersenlab.roomba.model.request.CleanRoomRequest;
+import com.andersenlab.roomba.model.request.CleanerCoordsDto;
+import com.andersenlab.roomba.model.request.PatchDto;
+import com.andersenlab.roomba.model.request.RoomSizeDto;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

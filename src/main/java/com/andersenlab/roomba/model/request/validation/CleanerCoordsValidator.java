@@ -1,6 +1,6 @@
-package com.andersenlab.roomba.controller.request.validation;
+package com.andersenlab.roomba.model.request.validation;
 
-import com.andersenlab.roomba.controller.request.CleanRoomRequest;
+import com.andersenlab.roomba.model.request.CleanRoomRequest;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

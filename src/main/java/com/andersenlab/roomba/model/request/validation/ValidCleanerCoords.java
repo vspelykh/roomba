@@ -1,4 +1,4 @@
-package com.andersenlab.roomba.controller.request.validation;
+package com.andersenlab.roomba.model.request.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

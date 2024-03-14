@@ -1,7 +1,7 @@
 package com.andersenlab.roomba.controller;
 
-import com.andersenlab.roomba.controller.request.CleanRoomRequest;
-import com.andersenlab.roomba.controller.response.CleanRoomResponse;
+import com.andersenlab.roomba.model.request.CleanRoomRequest;
+import com.andersenlab.roomba.model.response.CleanRoomResponse;
 import com.andersenlab.roomba.service.CleanerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class CleanerController {
 
     private final CleanerService cleanerService;
 
-    @PostMapping("/cleaner")
+    @PostMapping("/cleaning")
     public ResponseEntity<CleanRoomResponse> cleanRoom(@Valid @RequestBody CleanRoomRequest cleanRoomRequest) {
         CleanRoomResponse cleanRoomResponse = cleanerService.cleanRoom(cleanRoomRequest);
         return ResponseEntity.ok(cleanRoomResponse);

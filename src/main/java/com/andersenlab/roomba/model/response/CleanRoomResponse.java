@@ -1,6 +1,6 @@
-package com.andersenlab.roomba.controller.response;
+package com.andersenlab.roomba.model.response;
 
-import com.andersenlab.roomba.controller.request.CleanerCoordsDto;
+import com.andersenlab.roomba.model.request.CleanerCoordsDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,5 +1,6 @@
 package com.andersenlab.roomba.exception;
 
+import com.andersenlab.roomba.model.response.ResponseExceptionBody;
 import lombok.NonNull;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;

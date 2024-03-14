@@ -1,7 +1,7 @@
 package com.andersenlab.roomba.controller;
 
-import com.andersenlab.roomba.controller.request.CleanRoomRequest;
-import com.andersenlab.roomba.controller.request.CleanerCoordsDto;
+import com.andersenlab.roomba.model.request.CleanRoomRequest;
+import com.andersenlab.roomba.model.request.CleanerCoordsDto;
 import com.andersenlab.roomba.exception.RestResponseEntityExceptionHandler;
 import com.andersenlab.roomba.service.CleanerService;
 import com.fasterxml.jackson.databind.ObjectMapper;

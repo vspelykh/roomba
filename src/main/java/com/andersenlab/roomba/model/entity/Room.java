@@ -1,4 +1,4 @@
-package com.andersenlab.roomba.model;
+package com.andersenlab.roomba.model.entity;
 
 import lombok.Data;
 
