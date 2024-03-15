@@ -14,12 +14,12 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: coordinateX
+                  name: coordinate_x
                   type: int
                   constraints:
                     nullable: false
               - column:
-                  name: coordinateY
+                  name: coordinate_y
                   type: int
                   constraints:
                     nullable: false

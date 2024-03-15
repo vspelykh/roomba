@@ -1,7 +1,10 @@
 package com.andersenlab.roomba.model.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "cleaning_result")
@@ -15,10 +18,10 @@ public class CleaningResult {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "incremental_integer_generator")
     private int id;
 
-    @Column(nullable = false)
+    @Column(name = "coordinate_x", nullable = false)
     private int coordinateX;
 
-    @Column(nullable = false)
+    @Column(name = "coordinate_y", nullable = false)
     private int coordinateY;
 
     @Column(nullable = false)
