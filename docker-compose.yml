@@ -1,0 +1,33 @@
+version: '3.6'
+
+services:
+  roomba:
+    image: roomba_image:latest
+    hostname: roomba
+    container_name: roomba
+    depends_on:
+      - roomba_db
+    environment:
+      DATASOURCE.URL: "jdbc:postgresql://roomba_db:5432/roomba_db"
+      DB.USERNAME: "postgres"
+      DB.PASSWORD: "password"
+    ports:
+      - "8080:8080"
+
+  roomba_db:
+    image: postgres
+    container_name: roomba_db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "roomba_db"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
+      db:
+      driver: bridge
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
