@@ -1,9 +1,9 @@
 package com.andersenlab.roomba.controller;
 
-import com.andersenlab.roomba.model.request.CleanRoomRequest;
-import com.andersenlab.roomba.model.request.CleanerCoordsDto;
 import com.andersenlab.roomba.exception.RestResponseEntityExceptionHandler;
-import com.andersenlab.roomba.service.CleanerService;
+import com.andersenlab.roomba.model.request.CleanRoomRequest;
+import com.andersenlab.roomba.model.request.HooverCoordsDto;
+import com.andersenlab.roomba.service.CleanerFacade;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,8 +29,8 @@ class CleanerControllerTest {
 
     @InjectMocks
     private CleanerController controller;
-    @Mock
-    private CleanerService cleanerService;
+    @InjectMocks
+    private CleanerFacade cleanerFacade;
 
     private MockMvc mockMvc;
 
@@ -48,7 +48,7 @@ class CleanerControllerTest {
 
     @ParameterizedTest
     @MethodSource("provideInvalidCoords")
-    void givenInvalidCoords_whenCleanRoom_thenReturnBadRequest(CleanerCoordsDto coords) throws Exception {
+    void givenInvalidCoords_whenCleanRoom_thenReturnBadRequest(HooverCoordsDto coords) throws Exception {
         CleanRoomRequest request = getRequest();
         request.setCoords(coords);
 
@@ -96,10 +96,10 @@ class CleanerControllerTest {
 
     private static Stream<Arguments> provideInvalidCoords() {
         return Stream.of(
-                Arguments.of(new CleanerCoordsDto(-1, -1)),
-                Arguments.of(new CleanerCoordsDto(6, 6)),
-                Arguments.of(new CleanerCoordsDto(-1, 6)),
-                Arguments.of(new CleanerCoordsDto(6, -1))
+                Arguments.of(new HooverCoordsDto(-1, -1)),
+                Arguments.of(new HooverCoordsDto(6, 6)),
+                Arguments.of(new HooverCoordsDto(-1, 6)),
+                Arguments.of(new HooverCoordsDto(6, -1))
         );
     }
 }

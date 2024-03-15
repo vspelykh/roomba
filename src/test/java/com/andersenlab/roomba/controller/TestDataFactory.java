@@ -1,7 +1,7 @@
 package com.andersenlab.roomba.controller;
 
 import com.andersenlab.roomba.model.request.CleanRoomRequest;
-import com.andersenlab.roomba.model.request.CleanerCoordsDto;
+import com.andersenlab.roomba.model.request.HooverCoordsDto;
 import com.andersenlab.roomba.model.request.PatchDto;
 import com.andersenlab.roomba.model.request.RoomSizeDto;
 import lombok.AccessLevel;
@@ -15,7 +15,7 @@ public class TestDataFactory {
     static CleanRoomRequest getRequest() {
         return CleanRoomRequest.builder()
                 .roomSize(new RoomSizeDto(5, 5))
-                .coords(new CleanerCoordsDto(0, 0))
+                .coords(new HooverCoordsDto(0, 0))
                 .patches(List.of(new PatchDto(1, 1)))
                 .instructions("NEEES")
                 .build();

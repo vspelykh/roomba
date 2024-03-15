@@ -1,6 +1,6 @@
 package com.andersenlab.roomba.model.response;
 
-import com.andersenlab.roomba.model.request.CleanerCoordsDto;
+import com.andersenlab.roomba.model.request.HooverCoordsDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 public class CleanRoomResponse {
 
-    private CleanerCoordsDto coords;
+    private HooverCoordsDto coords;
     private int patches;
 }

@@ -23,7 +23,7 @@ public class CleanRoomRequest {
     private RoomSizeDto roomSize;
 
     @Valid
-    private CleanerCoordsDto coords;
+    private HooverCoordsDto coords;
 
     @Valid
     private List<PatchDto> patches;

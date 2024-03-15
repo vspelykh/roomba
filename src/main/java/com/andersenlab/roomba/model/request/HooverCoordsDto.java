@@ -12,7 +12,7 @@ import static com.andersenlab.roomba.model.request.RequestConstants.MIN_COORDINA
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class CleanerCoordsDto {
+public class HooverCoordsDto {
 
     @Min(value = MIN_COORDINATE_VALUE, message = "X coordinate of the cleaner should start from 0")
     private int x;

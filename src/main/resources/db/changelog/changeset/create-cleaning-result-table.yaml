@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_cleaning_result_table
+      author: your_name
+      changes:
+        - createTable:
+            tableName: cleaning_result
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: coordinateX
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: coordinateY
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: patches
+                  type: int
+                  constraints:
+                    nullable: false
