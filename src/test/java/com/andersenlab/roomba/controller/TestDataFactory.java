@@ -1,5 +1,6 @@
 package com.andersenlab.roomba.controller;
 
+import com.andersenlab.roomba.model.entity.CleaningResult;
 import com.andersenlab.roomba.model.request.CleanRoomRequest;
 import com.andersenlab.roomba.model.request.HooverCoordsDto;
 import com.andersenlab.roomba.model.request.PatchDto;
@@ -19,5 +20,11 @@ public class TestDataFactory {
                 .patches(List.of(new PatchDto(1, 1)))
                 .instructions("NEEES")
                 .build();
+    }
+
+    static CleaningResult getExpectedResult() {
+        CleaningResult cleaningResult = new CleaningResult(3, 0, 1);
+        cleaningResult.setId(1);
+        return cleaningResult;
     }
 }

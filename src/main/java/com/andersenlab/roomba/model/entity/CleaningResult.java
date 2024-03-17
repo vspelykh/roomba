@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "cleaning_result")
 @Getter
@@ -31,5 +33,17 @@ public class CleaningResult {
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
         this.patches = patches;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CleaningResult that)) return false;
+        return id == that.id && coordinateX == that.coordinateX && coordinateY == that.coordinateY && patches == that.patches;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, coordinateX, coordinateY, patches);
     }
 }

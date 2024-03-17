@@ -1,6 +1,6 @@
 package com.andersenlab.roomba.controller;
 
-import com.andersenlab.roomba.exception.RestResponseEntityExceptionHandler;
+import com.andersenlab.roomba.model.entity.CleaningResult;
 import com.andersenlab.roomba.model.entity.CleaningResultRepository;
 import com.andersenlab.roomba.model.request.CleanRoomRequest;
 import com.andersenlab.roomba.model.request.HooverCoordsDto;
@@ -8,58 +8,74 @@ import com.andersenlab.roomba.service.CleanerFacade;
 import com.andersenlab.roomba.service.CleaningResultService;
 import com.andersenlab.roomba.service.HooverService;
 import com.andersenlab.roomba.service.RoomService;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.List;
 import java.util.stream.Stream;
 
+import static com.andersenlab.roomba.controller.TestDataFactory.getExpectedResult;
 import static com.andersenlab.roomba.controller.TestDataFactory.getRequest;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(MockitoExtension.class)
-class CleanerControllerTest {
+class IntegrationCleanerControllerTest extends AbstractIntegrationControllerTest {
 
-    @InjectMocks
-    private CleanerController controller;
-    @InjectMocks
-    private CleanerFacade cleanerFacade;
+    protected IntegrationCleanerControllerTest() {
+        if (!postgreSQLContainer.isRunning()) {
+            postgreSQLContainer.withDatabaseName("integration-tests-db")
+                    .withUsername("username").withPassword("password");
+            postgreSQLContainer.start();
+        }
+    }
 
-    @Mock
-    private HooverService service;
+    @AfterAll
+    void destroy() {
+        postgreSQLContainer.close();
+    }
 
-    @Mock
-    private RoomService roomService;
+    @Autowired
+    protected CleanerController controller;
 
-    @Mock
-    private CleaningResultService cleaningResultService;
+    @Autowired
+    protected CleanerFacade cleanerFacade;
 
-    @Mock
-    private CleaningResultRepository cleaningResultRepository;
+    @Autowired
+    protected HooverService service;
 
-    private MockMvc mockMvc;
+    @Autowired
+    protected RoomService roomService;
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    @Autowired
+    protected CleaningResultService cleaningResultService;
 
+    @Autowired
+    protected CleaningResultRepository cleaningResultRepository;
     private static final String PATH = "/api/v1/cleaning";
 
-    @BeforeEach
-    void init() {
-        mockMvc = MockMvcBuilders
-                .standaloneSetup(controller)
-                .setControllerAdvice(RestResponseEntityExceptionHandler.class)
-                .build();
+    @Test
+    void givenValidRequest_whenCleanRoom_saveResultToDatabaseAndReturnOk() throws Exception {
+        CleanRoomRequest request = getRequest();
+
+        String body = objectMapper.writeValueAsString(request);
+        mockMvc.perform(post(PATH)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(jsonPath("$.coords.x").value("3"))
+                .andExpect(jsonPath("$.coords.y").value("0"))
+                .andExpect(jsonPath("$.patches").value("1"))
+                .andExpect(status().isOk());
+
+        List<CleaningResult> resultList = cleaningResultRepository.findAll();
+        assertEquals(1, resultList.size());
+        assertEquals(getExpectedResult(), resultList.get(0));
     }
 
     @ParameterizedTest
@@ -75,7 +91,7 @@ class CleanerControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-//    @Test
+    @Test
     void givenValidCoords_whenCleanRoom_thenReturnOk() throws Exception {
         CleanRoomRequest request = getRequest();
 
