@@ -1,7 +1,7 @@
 package com.andersenlab.roomba.service;
 
 import com.andersenlab.roomba.model.entity.CleaningResult;
-import com.andersenlab.roomba.model.entity.CleaningResultRepository;
+import com.andersenlab.roomba.repository.CleaningResultRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

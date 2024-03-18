@@ -1,7 +1,7 @@
 package com.andersenlab.roomba.controller;
 
 import com.andersenlab.roomba.model.entity.CleaningResult;
-import com.andersenlab.roomba.model.entity.CleaningResultRepository;
+import com.andersenlab.roomba.repository.CleaningResultRepository;
 import com.andersenlab.roomba.model.request.CleanRoomRequest;
 import com.andersenlab.roomba.model.request.HooverCoordsDto;
 import com.andersenlab.roomba.service.CleanerFacade;
